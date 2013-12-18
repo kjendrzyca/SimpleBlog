@@ -250,9 +250,3 @@ namespace SimpleBlog.Controllers
         }
     }
 }
-//foreach (var selectListItem in postInput.AvailableTags.Where(selectListItem => postInput.TagsIds.Contains(Int32.Parse(selectListItem.Value))))
-//{
-//    selectListItem.Selected = true;
-//}
-
-//ViewBag.TagId = new MultiSelectList(_adminService.GetTagsForSelectList(), "TagId", "Name");
