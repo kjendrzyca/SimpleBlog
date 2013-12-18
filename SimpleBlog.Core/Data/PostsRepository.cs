@@ -52,6 +52,19 @@ namespace SimpleBlog.Core.Data
             return posts;
         }
 
+        public IList<Post> GetPostsForSearch(string searchString, int pageNumber, int pageSize)
+        {
+            var posts = DbSet
+                .Where(p => p.Published && (p.Title.Contains(searchString)
+                                            || p.Category.Name.Equals(searchString)
+                                            || p.Tags.Any(t => t.Name.Equals(searchString))))
+                .OrderByDescending(p => p.PostedOn)
+                .Skip(pageNumber * pageSize)
+                .Take(pageSize).ToList();
+
+            return posts;
+        }
+
         public int TotalPosts()
         {
             return DbSet.Count(p => p.Published);
@@ -67,17 +80,11 @@ namespace SimpleBlog.Core.Data
             return DbSet.Count(p => p.Published && p.Tags.Any(t => t.UrlSlug.Equals(tagSlug)));
         }
 
-        public IList<Post> GetPostsForSearch(string searchString, int pageNumber, int pageSize)
+        public int TotalPostsForSearchString(string searchString)
         {
-            var posts = DbSet
-                .Where(p => p.Published && (p.Title.Contains(searchString)
+            return DbSet.Count(p => p.Published && (p.Title.Contains(searchString)
                                             || p.Category.Name.Equals(searchString)
-                                            || p.Tags.Any(t => t.Name.Equals(searchString))))
-                .OrderByDescending(p => p.PostedOn)
-                .Skip(pageNumber*pageSize)
-                .Take(pageSize).ToList();
-
-            return posts;
+                                            || p.Tags.Any(t => t.Name.Equals(searchString))));
         }
 
         public IList<Post> GetLatestPost(int count)

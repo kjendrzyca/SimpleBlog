@@ -1,6 +1,9 @@
-﻿using System.Web;
+﻿using System.Collections.Generic;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
+using System.Web.Script.Services;
+using System.Web.UI;
 using SimpleBlog.Models;
 
 namespace SimpleBlog.Infrastructure.HtmlHelpers
@@ -9,7 +12,9 @@ namespace SimpleBlog.Infrastructure.HtmlHelpers
     {
         public static HtmlString PaginationForModel(this HtmlHelper helper, PostsListViewModel model)
         {
-            var action = SetActionName(model);
+            var action = SetActionName(model.PageType);
+
+            var routeValues = SetRouteValues(model.PageType, model.RouteValue, model.CurrentPage);
 
             if (model.CurrentPage == 1)
             {
@@ -24,20 +29,41 @@ namespace SimpleBlog.Infrastructure.HtmlHelpers
                 helper.ActionLink("Next >", action, "Blog", new { page = model.CurrentPage + 1 }, null).ToString());
         }
 
-        private static string SetActionName(PostsListViewModel model)
+        private static string SetActionName(EPageType pageType)
         {
-            var action = "Posts";
-
-            if (model.Category != null)
+            switch (pageType)
             {
-                action = "Category";
-            }
-            else if (model.Tag != null)
-            {
-                action = "Tag";
+                case EPageType.CategoriesList:
+                    return "Category";
+                case EPageType.TagsList:
+                    return "Tag";
+                case EPageType.SearchStringList:
+                    return "Search";
             }
 
-            return action;
+            return "Posts";
+        }
+
+        private static List<object> SetRouteValues(EPageType pageType, string routeValue, int currentPage)
+        {
+            if (pageType == EPageType.SearchStringList)
+            {
+                return new List<object>
+                                  {
+                                      new {searchString = routeValue, page = 2},
+                                      new {searchString = routeValue, page = currentPage - 1},
+                                      new {searchString = routeValue, page = currentPage - 1},
+                                      new {searchString = routeValue, page = currentPage + 1}
+                                  };
+            }
+
+            return new List<object>
+                              {
+                                  new {page = 2},
+                                  new {page = currentPage - 1},
+                                  new {page = currentPage - 1},
+                                  new {page = currentPage + 1}
+                              };
         }
     }
 }

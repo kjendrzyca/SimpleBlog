@@ -1,5 +1,4 @@
-﻿using System;
-using System.Web;
+﻿using System.Web;
 using System.Web.Mvc;
 using SimpleBlog.Services;
 
@@ -8,7 +7,7 @@ namespace SimpleBlog.Controllers
     public class BlogController : Controller
     {
         private readonly IPostViewModelCreator _postViewModelCreator;
-        private const int PageSize = 5;
+        private const int PageSize = 2;
 
         public BlogController(IPostViewModelCreator postViewModelCreator)
         {
@@ -20,23 +19,11 @@ namespace SimpleBlog.Controllers
             return Posts();
         }
 
-        public ViewResult Posts(int page = 1)
-        {
-            var postsListViewModel = _postViewModelCreator.GetPosts(page, PageSize);
-
-            postsListViewModel.PageSize = PageSize;
-            postsListViewModel.CurrentPage = page;
-            postsListViewModel.TotalPages = Convert.ToInt32(Math.Ceiling((double)postsListViewModel.TotalPosts / PageSize));
-            postsListViewModel.Title = "Latest posts";
-
-            return View("List", postsListViewModel);
-        }
-
         public ActionResult Post(int year, int month, int day, string title)
         {
             var postViewModel = _postViewModelCreator.GetSinglePost(year, month, day, title);
 
-            if(postViewModel.Post == null)
+            if (postViewModel.Post == null)
                 throw new HttpException(404, "Post not found");
 
             if (postViewModel.Post.Published == false /*&& User.Identity.IsAuthenticated == false*/)
@@ -45,43 +32,36 @@ namespace SimpleBlog.Controllers
             return View(postViewModel);
         }
 
+        public ViewResult Posts(int page = 1)
+        {
+            var postsListViewModel = _postViewModelCreator.GetPostsList(page, PageSize);
+
+            return View("List", postsListViewModel);
+        }
+
         public ActionResult Category(string category, int page = 1)
         {
             var postsListViewModel = _postViewModelCreator.GetPostsForCategory(category, page, PageSize);
 
-            if(postsListViewModel.Category == null)
-                throw new HttpException(404, "Category not found");
-
-            postsListViewModel.PageSize = PageSize;
-            postsListViewModel.CurrentPage = page;
-            postsListViewModel.TotalPages = Convert.ToInt32(Math.Ceiling((double)postsListViewModel.TotalPosts / PageSize));
-            postsListViewModel.Title = String.Format(@"Latest posts on category ""{0}""",
-                        postsListViewModel.Category.Name);
+            //if(postsListViewModel.Category == null)
+            //    throw new HttpException(404, "Category not found");
 
             return View("List", postsListViewModel);
         }
 
-        //TODO: paginacja
         public ActionResult Tag(string tag, int page = 1)
         {
             var postsListViewModel = _postViewModelCreator.GetPostsForTag(tag, page, PageSize);
 
-            if (postsListViewModel.Tag == null)
-                throw new HttpException(404, "Tag not found");
-
-            postsListViewModel.PageSize = PageSize;
-            postsListViewModel.CurrentPage = page;
-            postsListViewModel.TotalPages = Convert.ToInt32(Math.Ceiling((double)postsListViewModel.TotalPosts / PageSize));
-            postsListViewModel.Title = String.Format(@"Latest posts tagged on ""{0}""",
-                postsListViewModel.Tag.Name);
+            //if (postsListViewModel.Tag == null)
+            //    throw new HttpException(404, "Tag not found");
 
             return View("List", postsListViewModel);
         }
 
-        //TODO: paginacja
-        public ActionResult Search(string searchString)
+        public ActionResult Search(string searchString, int page = 1)
         {
-            var postsListViewModel = _postViewModelCreator.GetPostsForSearch(searchString, PageSize);
+            var postsListViewModel = _postViewModelCreator.GetPostsForSearch(searchString, page, PageSize);
             
             return View("List", postsListViewModel);
         }
