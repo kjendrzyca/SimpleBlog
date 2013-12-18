@@ -37,10 +37,11 @@ ol, ul {
 }
 
 blockquote, q {
+    -webkit-quotes: none;
     quotes: none;
 }
 
-    blockquote:before, blockquote:after,
+blockquote:before, blockquote:after,
     q:before, q:after {
         content: '';
         content: none;

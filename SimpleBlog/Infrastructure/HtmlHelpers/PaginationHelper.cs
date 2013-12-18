@@ -2,8 +2,6 @@
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
-using System.Web.Script.Services;
-using System.Web.UI;
 using SimpleBlog.Models;
 
 namespace SimpleBlog.Infrastructure.HtmlHelpers
@@ -18,15 +16,15 @@ namespace SimpleBlog.Infrastructure.HtmlHelpers
 
             if (model.CurrentPage == 1)
             {
-                return helper.ActionLink("Next >", action, "Blog", new { page = 2 }, null);
+                return helper.ActionLink("Next >", action, "Blog", routeValues[0], null);
             }
             if (model.CurrentPage == model.TotalPages)
             {
-                return helper.ActionLink("< Previous", action, "Blog", new { page = model.CurrentPage - 1 }, null);
+                return helper.ActionLink("< Previous", action, "Blog", routeValues[1], null);
             }
             return MvcHtmlString.Create(
-                helper.ActionLink("< Previous", action, "Blog", new { page = model.CurrentPage - 1 }, null) +
-                helper.ActionLink("Next >", action, "Blog", new { page = model.CurrentPage + 1 }, null).ToString());
+                helper.ActionLink("< Previous", action, "Blog", routeValues[2], null) +
+                helper.ActionLink("Next >", action, "Blog", routeValues[3], null).ToString());
         }
 
         private static string SetActionName(EPageType pageType)

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Web;
 using SimpleBlog.Core.Data;
 using SimpleBlog.Models;
 
@@ -89,7 +88,7 @@ namespace SimpleBlog.Services
         {
             var model = new PostsListViewModel
                             {
-                                Posts = _postsRepository.GetPostsForSearch(searchString, 0, pageSize),
+                                Posts = _postsRepository.GetPostsForSearch(searchString, page - 1, pageSize),
                                 TotalPosts = _postsRepository.TotalPostsForSearchString(searchString),
                                 PageSize = pageSize,
                                 CurrentPage = page,

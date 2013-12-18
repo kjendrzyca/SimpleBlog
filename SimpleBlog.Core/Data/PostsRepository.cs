@@ -59,7 +59,7 @@ namespace SimpleBlog.Core.Data
                                             || p.Category.Name.Equals(searchString)
                                             || p.Tags.Any(t => t.Name.Equals(searchString))))
                 .OrderByDescending(p => p.PostedOn)
-                .Skip(pageNumber * pageSize)
+                .Skip(pageNumber*pageSize)
                 .Take(pageSize).ToList();
 
             return posts;

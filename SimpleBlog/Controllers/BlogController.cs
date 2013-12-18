@@ -23,6 +23,7 @@ namespace SimpleBlog.Controllers
         {
             var postViewModel = _postViewModelCreator.GetSinglePost(year, month, day, title);
 
+            //TODO: null object model?
             if (postViewModel.Post == null)
                 throw new HttpException(404, "Post not found");
 
@@ -43,8 +44,7 @@ namespace SimpleBlog.Controllers
         {
             var postsListViewModel = _postViewModelCreator.GetPostsForCategory(category, page, PageSize);
 
-            //if(postsListViewModel.Category == null)
-            //    throw new HttpException(404, "Category not found");
+            //TODO: null object model
 
             return View("List", postsListViewModel);
         }
@@ -53,8 +53,7 @@ namespace SimpleBlog.Controllers
         {
             var postsListViewModel = _postViewModelCreator.GetPostsForTag(tag, page, PageSize);
 
-            //if (postsListViewModel.Tag == null)
-            //    throw new HttpException(404, "Tag not found");
+            //TODO: null object model
 
             return View("List", postsListViewModel);
         }
