@@ -1,0 +1,45 @@
+﻿@model SimpleBlog.Models.Admin.AdminTagsList
+
+@{
+    ViewBag.Title = "Manage tags";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Manage tags</h1>
+
+@Html.ActionLink("Create New", "CreateTag", null, new { @class = "create-new-link" })
+
+<table id="admin-table">
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Description
+        </th>
+        <th>
+            Url slug
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model.Tags) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UrlSlug)
+        </td>
+        <td>
+
+            @Html.ActionLink("Edit", "EditTag", new { id = item.TagId }) |
+            @Html.ActionLink("Delete", "DeleteTag", new { id = item.TagId })
+        </td>
+    </tr>
+}
+
+</table>

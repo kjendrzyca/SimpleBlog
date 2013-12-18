@@ -1,0 +1,38 @@
+﻿@model SimpleBlog.Models.PostsListViewModel
+
+<h1>@Model.Title</h1>
+
+@if (Model.Posts.Count > 0)
+{
+    foreach (var post in Model.Posts)
+    {
+    @Html.Partial("_PostTemplate", post)
+    }
+}
+else
+{
+    <p>No posts found!</p>
+}
+
+@if (Model.TotalPosts > Model.PageSize)
+{
+    <div class="pagination">
+        Page:
+        @Html.PaginationForModel(Model)
+        @*@{
+            if (Model.CurrentPage == 1)
+            {
+                @Html.ActionLink("Next >", "Posts", "Blog", new { page = 2 }, null)
+            }
+            else if (Model.CurrentPage == Model.TotalPages)
+            {
+                @Html.ActionLink("< Previous", "Posts", "Blog", new { page = Model.CurrentPage - 1 }, null)
+            }
+            else
+            {
+                @Html.ActionLink("< Previous", "Posts", "Blog", new {page = Model.CurrentPage - 1}, null)
+                @Html.ActionLink("Next >", "Posts", "Blog", new { page = Model.CurrentPage + 1 }, null)
+            }
+        }*@
+    </div>
+}

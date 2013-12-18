@@ -1,0 +1,44 @@
+﻿@using System.Globalization
+@model SimpleBlog.Core.Model.Post
+
+<article class="post">
+    <div class="post-heading">
+        <div class="post-title">
+            @Html.PostLink(Model)
+        </div>
+
+        <div class="post-category">
+            <span>Category: @Html.CategoryLink(Model.Category)</span>
+        </div>
+
+        <div class="post-tags">
+            <span>Tags:
+                @foreach(var tag in Model.Tags)
+                {
+                    <span class="post-tag">@Html.TagLink(tag)</span>
+                }
+            </span>
+        </div>
+
+        <div class="post-date">
+            Posted on @Model.PostedOn.ToString(CultureInfo.InvariantCulture)
+            @*@Model.PostedOn.ToConfigLocalTime()*@
+        </div>
+    </div>
+
+    <div class="post-body">
+        <p>@Model.ShortDescription</p>
+    </div>
+
+    <div class="post-footer">
+        @Html.ActionLink("continue...", "Post", "Blog",
+                         new
+                             {
+                                 year = Model.PostedOn.Year,
+                                 month = Model.PostedOn.Month,
+                                 day = Model.PostedOn.Day,
+                                 title = Model.UrlSlug
+                             },
+                         new { title = "continue..." })
+    </div>
+</article>

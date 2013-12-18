@@ -1,0 +1,18 @@
+﻿@model SimpleBlog.Models.CatgoriesListViewModel
+
+<div class="categories-widget">
+    <h3>Categories: </h3>
+    <ul class="categories-list">
+        @if (Model.Categories.Count > 0)
+        {
+            foreach (var category in Model.Categories)
+            {
+                <li>@Html.ActionLink(category.Name, "Category", "Blog", new {category = category.UrlSlug}, null)</li>
+            }
+        }
+        else
+        {
+            <li>No categories found!</li>
+        }
+    </ul>
+</div>

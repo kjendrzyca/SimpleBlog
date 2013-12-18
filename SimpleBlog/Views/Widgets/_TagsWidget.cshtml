@@ -1,0 +1,18 @@
+﻿@model SimpleBlog.Models.TagsListViewModel
+
+<div class="tags-widget">
+    <h3>Tags: </h3>
+    <div class="post-tags">
+        @if (Model.Tags.Count > 0)
+        {
+            foreach (var tag in Model.Tags)
+            {
+<span class="post-tag">@Html.ActionLink(tag.Name, "Tag", "Blog", new { tag = tag.UrlSlug }, null)</span>
+            }
+        }
+        else
+        {
+            <p>No tags found!</p>
+        }
+    </div>
+</div>

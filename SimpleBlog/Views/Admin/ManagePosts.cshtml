@@ -1,0 +1,56 @@
+﻿@model SimpleBlog.Models.Admin.AdminPostsList
+
+@{
+    ViewBag.Title = "Manage posts";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Manage posts</h1>
+
+@Html.ActionLink("Create New", "CreatePost", null, new { @class = "create-new-link" })
+
+<table id="admin-table">
+    <tr>
+        <th>Id
+        </th>
+        <th>Title
+        </th>
+        <th>Published
+        </th>
+        <th>Posted on
+        </th>
+        <th>Modified
+        </th>
+
+        <th></th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Posts)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PostId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Published)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PostedOn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Modified)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditPost", new { id = item.PostId })
+            </td>
+            <td>
+                @Html.ActionLink("Delete", "DeletePost", new { id = item.PostId })
+            </td>
+        </tr>
+    }
+
+</table>

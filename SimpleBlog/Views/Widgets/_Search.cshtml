@@ -1,0 +1,7 @@
+﻿<div class="search-widget">
+    @using (Html.BeginForm("Search", "Blog", FormMethod.Get, new { id = "search-form" }))
+    {
+        @Html.TextBox("searchString")
+        <input type="submit" value="Search" />
+    }
+</div>

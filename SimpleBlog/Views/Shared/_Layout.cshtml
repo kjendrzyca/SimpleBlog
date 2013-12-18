@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title</title>
+
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/themes/Basic/style.css")" />
+</head>
+
+<body>
+    <div id="main">
+
+        <header>
+            <div id="logo">
+                <div id="logo-text">
+                    <h1><a href="/">Simple<span class="logo-color">Blog</span></a></h1>
+                    <h2>How to build simple blog in no time.</h2>
+                </div>
+            </div>
+
+            <nav id="menubar">
+                <ul id="menu">
+                    <li>@Html.ActionLink("Posts", "Posts", "Blog")</li>
+                    <li>@Html.ActionLink("Manage", "Manage", "Admin")</li>
+                </ul>
+            </nav>
+
+        </header>
+
+        <div id="site-content">
+            <aside id="sidebar">
+                @Html.Action("Search", "Widgets")
+                @Html.Action("CategoriesWidget", "Widgets")
+                @Html.Action("TagsWidget", "Widgets")
+                @Html.Action("LatestPostsWidget", "Widgets")
+            </aside>
+            <div id="main-content">@RenderBody()</div>
+        </div>
+
+        <footer>
+            Copyright © @DateTime.Now.Year SimpleBlog All Rights Reserved
+        </footer>
+    </div>
+</body>
+</html>

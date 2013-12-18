@@ -1,0 +1,10 @@
+﻿@{
+    ViewBag.Title = "Manage";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div id="management-links">
+    @Html.ActionLink("Manage Posts", "ManagePosts", "Admin")
+    @Html.ActionLink("Manage Categories", "ManageCategories", "Admin")
+    @Html.ActionLink("Manage Tags", "ManageTags", "Admin")
+</div>

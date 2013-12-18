@@ -1,0 +1,32 @@
+﻿@model SimpleBlog.Models.PostViewModel
+
+@{
+    ViewBag.Title = Model.Post.Title;
+}
+
+<article class="post">
+    <div class="post-heading">
+        <div class="post-title">
+            @Model.Post.Title
+        </div>
+        <div class="post-category">
+            <span>Category: @Model.Post.Category.Name</span>
+        </div>
+
+        <div class="post-tags">
+            <span>Tags:
+                @foreach(var tag in Model.Post.Tags)
+                {
+                    <span class="post-tag">@Html.TagLink(tag)</span>
+                }
+            </span>
+        </div>
+
+        <div class="post-date">
+            @Model.Post.PostedOn.Date.ToString()
+        </div>
+    </div>
+    <div class="post-body">
+        @Model.Post.Description
+    </div>
+</article>

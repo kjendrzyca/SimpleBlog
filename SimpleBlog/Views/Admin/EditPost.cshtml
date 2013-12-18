@@ -1,0 +1,103 @@
+﻿@model SimpleBlog.Models.Admin.PostInput
+
+@{
+    ViewBag.Title = "Edit post";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Edit post</h1>
+
+@using (Html.BeginForm("EditPost", "Admin", FormMethod.Post, new { id = "admin-form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Post</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Title)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Title)
+            @Html.ValidationMessageFor(model => model.Title)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ShortDescription)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ShortDescription)
+            @Html.ValidationMessageFor(model => model.ShortDescription)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Description)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Description)
+            @Html.ValidationMessageFor(model => model.Description)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Meta)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Meta)
+            @Html.ValidationMessageFor(model => model.Meta)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.UrlSlug)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.UrlSlug)
+            @Html.ValidationMessageFor(model => model.UrlSlug)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PostedOn)
+            @Html.HiddenFor(model => model.PostedOn)
+        </div>
+
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PostedOn)
+            @Html.ValidationMessageFor(model => model.PostedOn)
+        </div>
+
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Published)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Published)
+            @Html.ValidationMessageFor(model => model.Published)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CategoryId)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.CategoryId, Model.AvailableCategories)
+            @Html.ValidationMessageFor(model => model.CategoryId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TagsIds)
+        </div>
+        <div class="editor-field">
+            @Html.ListBoxFor(model => model.TagsIds, Model.AvailableTags)
+            @Html.ValidationMessageFor(model => model.TagsIds)
+        </div>
+
+        <p>
+            @Html.HiddenFor(model => model.PostId)
+            @Html.ValidationSummary()
+            <input type="submit" value="Edit" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "ManagePosts")
+</div>
