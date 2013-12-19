@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Web.Mvc;
 using Ninject;
 using SimpleBlog.Core.Data;
-using SimpleBlog.Core.Model;
+using SimpleBlog.Core.Entities;
 using SimpleBlog.Services;
 
 namespace SimpleBlog.Infrastructure

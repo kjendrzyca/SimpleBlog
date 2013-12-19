@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 
-namespace SimpleBlog.Core.Model
+namespace SimpleBlog.Core.Entities
 {
-    public class Tag
+    public class Category
     {
-        public int TagId { get; set; }
+        public int CategoryId { get; set; }
 
         public string Name { get; set; }
 

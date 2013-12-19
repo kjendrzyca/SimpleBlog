@@ -1,4 +1,4 @@
-using SimpleBlog.Core.Model;
+using SimpleBlog.Core.Entities;
 using SimpleBlog.Models.Admin;
 
 namespace SimpleBlog.Services

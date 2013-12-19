@@ -1,5 +1,5 @@
 ﻿using System.Data.Entity;
-using SimpleBlog.Core.Model;
+using SimpleBlog.Core.Entities;
 
 namespace SimpleBlog.Core.Data
 {

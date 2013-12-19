@@ -55,9 +55,9 @@
     <Compile Include="Data\PostsRepository.cs" />
     <Compile Include="Data\Repository.cs" />
     <Compile Include="Data\TagsRepository.cs" />
-    <Compile Include="Model\Category.cs" />
-    <Compile Include="Model\Post.cs" />
-    <Compile Include="Model\Tag.cs" />
+    <Compile Include="Entities\Category.cs" />
+    <Compile Include="Entities\Post.cs" />
+    <Compile Include="Entities\Tag.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

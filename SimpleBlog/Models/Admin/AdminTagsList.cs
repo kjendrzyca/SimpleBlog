@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using SimpleBlog.Core.Model;
+using SimpleBlog.Core.Entities;
 
 namespace SimpleBlog.Models.Admin
 {

@@ -1,4 +1,4 @@
-using SimpleBlog.Core.Model;
+using SimpleBlog.Core.Entities;
 
 namespace SimpleBlog.Models
 {

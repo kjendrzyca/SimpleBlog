@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
-using SimpleBlog.Core.Model;
+using SimpleBlog.Core.Entities;
 
 namespace SimpleBlog.Infrastructure.HtmlHelpers
 {
