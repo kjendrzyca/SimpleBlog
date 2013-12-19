@@ -14,11 +14,6 @@ namespace SimpleBlog.Controllers
             _postViewModelCreator = postViewModelCreator;
         }
 
-        public ActionResult Index()
-        {
-            return Posts();
-        }
-
         public ActionResult Post(int year, int month, int day, string title)
         {
             var postViewModel = _postViewModelCreator.GetSinglePost(year, month, day, title);
