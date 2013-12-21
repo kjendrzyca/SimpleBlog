@@ -6,17 +6,17 @@ namespace SimpleBlog.Controllers
 {
     public class BlogController : Controller
     {
-        private readonly IPostViewModelCreator _postViewModelCreator;
+        private readonly IPostViewModelBuilder _postViewModelBuilder;
         private const int PageSize = 2;
 
-        public BlogController(IPostViewModelCreator postViewModelCreator)
+        public BlogController(IPostViewModelBuilder postViewModelBuilder)
         {
-            _postViewModelCreator = postViewModelCreator;
+            _postViewModelBuilder = postViewModelBuilder;
         }
 
         public ActionResult Post(int year, int month, int day, string title)
         {
-            var postViewModel = _postViewModelCreator.GetSinglePost(year, month, day, title);
+            var postViewModel = _postViewModelBuilder.GetSinglePost(year, month, day, title);
 
             //TODO: null object model?
             if (postViewModel.Post == null)
@@ -30,14 +30,14 @@ namespace SimpleBlog.Controllers
 
         public ViewResult Posts(int page = 1)
         {
-            var postsListViewModel = _postViewModelCreator.GetPostsList(page, PageSize);
+            var postsListViewModel = _postViewModelBuilder.GetPostsList(page, PageSize);
 
             return View("List", postsListViewModel);
         }
 
         public ActionResult Category(string category, int page = 1)
         {
-            var postsListViewModel = _postViewModelCreator.GetPostsForCategory(category, page, PageSize);
+            var postsListViewModel = _postViewModelBuilder.GetPostsForCategory(category, page, PageSize);
 
             //TODO: null object model
 
@@ -46,7 +46,7 @@ namespace SimpleBlog.Controllers
 
         public ActionResult Tag(string tag, int page = 1)
         {
-            var postsListViewModel = _postViewModelCreator.GetPostsForTag(tag, page, PageSize);
+            var postsListViewModel = _postViewModelBuilder.GetPostsForTag(tag, page, PageSize);
 
             //TODO: null object model
 
@@ -55,7 +55,7 @@ namespace SimpleBlog.Controllers
 
         public ActionResult Search(string searchString, int page = 1)
         {
-            var postsListViewModel = _postViewModelCreator.GetPostsForSearch(searchString, page, PageSize);
+            var postsListViewModel = _postViewModelBuilder.GetPostsForSearch(searchString, page, PageSize);
             
             return View("List", postsListViewModel);
         }

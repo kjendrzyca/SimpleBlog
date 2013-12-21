@@ -2,7 +2,7 @@ using SimpleBlog.Models;
 
 namespace SimpleBlog.Services
 {
-    public interface IPostViewModelCreator
+    public interface IPostViewModelBuilder
     {
         PostViewModel GetSinglePost(int year, int month, int day, string title);
         PostsListViewModel GetPostsList(int page, int pageSize);

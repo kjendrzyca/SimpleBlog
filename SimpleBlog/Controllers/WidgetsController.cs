@@ -5,10 +5,10 @@ namespace SimpleBlog.Controllers
 {
     public class WidgetsController : Controller
     {
-        private readonly IWidgetsModelCreator _widgetsModelCreator;
+        private readonly IWidgetsModelBuilder _widgetsModelCreator;
         private const int LatestPostsListSize = 10;
 
-        public WidgetsController(IWidgetsModelCreator widgetsModelCreator)
+        public WidgetsController(IWidgetsModelBuilder widgetsModelCreator)
         {
             _widgetsModelCreator = widgetsModelCreator;
         }

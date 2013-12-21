@@ -4,13 +4,13 @@ using SimpleBlog.Models;
 
 namespace SimpleBlog.Services
 {
-    public class PostViewModelCreator : IPostViewModelCreator
+    public class PostViewModelBuilder : IPostViewModelBuilder
     {
         private readonly IPostsRepository _postsRepository;
         private readonly ICategoriesRepository _categoriesRepository;
         private readonly ITagsRepository _tagsRepository;
 
-        public PostViewModelCreator(IPostsRepository postsRepository, ICategoriesRepository categoriesRepository, ITagsRepository tagsRepository)
+        public PostViewModelBuilder(IPostsRepository postsRepository, ICategoriesRepository categoriesRepository, ITagsRepository tagsRepository)
         {
             _postsRepository = postsRepository;
             _categoriesRepository = categoriesRepository;

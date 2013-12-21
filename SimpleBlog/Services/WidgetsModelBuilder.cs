@@ -3,13 +3,13 @@ using SimpleBlog.Models;
 
 namespace SimpleBlog.Services
 {
-    public class WidgetsModelCreator : IWidgetsModelCreator
+    public class WidgetsModelBuilder : IWidgetsModelBuilder
     {
         private readonly ICategoriesRepository _categoriesRepository;
         private readonly IPostsRepository _postsRepository;
         private readonly ITagsRepository _tagsRepository;
 
-        public WidgetsModelCreator(IPostsRepository postsRepository, ICategoriesRepository categoriesRepository, ITagsRepository tagsRepository)
+        public WidgetsModelBuilder(IPostsRepository postsRepository, ICategoriesRepository categoriesRepository, ITagsRepository tagsRepository)
         {
             _categoriesRepository = categoriesRepository;
             _postsRepository = postsRepository;

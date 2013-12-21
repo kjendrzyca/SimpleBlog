@@ -2,7 +2,7 @@ using SimpleBlog.Models;
 
 namespace SimpleBlog.Services
 {
-    public interface IWidgetsModelCreator
+    public interface IWidgetsModelBuilder
     {
         CatgoriesListViewModel GetAllCategories();
         TagsListViewModel GetAllTags();

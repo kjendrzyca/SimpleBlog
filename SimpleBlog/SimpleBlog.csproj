@@ -151,11 +151,11 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\CatgoriesListViewModel.cs" />
-    <Compile Include="Services\IPostViewModelCreator.cs" />
-    <Compile Include="Services\IWidgetsModelCreator.cs" />
-    <Compile Include="Services\PostViewModelCreator.cs" />
+    <Compile Include="Services\IPostViewModelBuilder.cs" />
+    <Compile Include="Services\IWidgetsModelBuilder.cs" />
+    <Compile Include="Services\PostViewModelBuilder.cs" />
     <Compile Include="Models\TagsListViewModel.cs" />
-    <Compile Include="Services\WidgetsModelCreator.cs" />
+    <Compile Include="Services\WidgetsModelBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />

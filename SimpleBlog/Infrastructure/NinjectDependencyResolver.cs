@@ -31,8 +31,8 @@ namespace SimpleBlog.Infrastructure
             _kernel.Bind<IPostsRepository>().To<PostsRepository>();
             _kernel.Bind<ICategoriesRepository>().To<CategoriesRepository>();
             _kernel.Bind<ITagsRepository>().To<TagsRepository>();
-            _kernel.Bind<IPostViewModelCreator>().To<PostViewModelCreator>();
-            _kernel.Bind<IWidgetsModelCreator>().To<WidgetsModelCreator>();
+            _kernel.Bind<IPostViewModelBuilder>().To<PostViewModelBuilder>();
+            _kernel.Bind<IWidgetsModelBuilder>().To<WidgetsModelBuilder>();
             _kernel.Bind<IAuthProvider>().To<FormsAuthProvider>();
             _kernel.Bind<IMapper>().To<Mapper>();
             _kernel.Bind<IAdminService>().To<AdminService>();
