@@ -5,12 +5,12 @@ namespace SimpleBlog.Controllers
 {
     public class WidgetsController : Controller
     {
-        private readonly IWidgetsModelBuilder _widgetsModelCreator;
+        private readonly IWidgetsModelBuilder _widgetsModelBuilder;
         private const int LatestPostsListSize = 10;
 
-        public WidgetsController(IWidgetsModelBuilder widgetsModelCreator)
+        public WidgetsController(IWidgetsModelBuilder widgetsModelBuilder)
         {
-            _widgetsModelCreator = widgetsModelCreator;
+            _widgetsModelBuilder = widgetsModelBuilder;
         }
 
         [ChildActionOnly]
@@ -22,21 +22,21 @@ namespace SimpleBlog.Controllers
         [ChildActionOnly]
         public PartialViewResult CategoriesWidget()
         {
-            var categoriesListViewModel = _widgetsModelCreator.GetAllCategories();
+            var categoriesListViewModel = _widgetsModelBuilder.GetAllCategories();
             return PartialView("_CategoriesWidget", categoriesListViewModel);
         }
 
         [ChildActionOnly]
         public PartialViewResult TagsWidget()
         {
-            var tagsListViewModel = _widgetsModelCreator.GetAllTags();
+            var tagsListViewModel = _widgetsModelBuilder.GetAllTags();
             return PartialView("_TagsWidget", tagsListViewModel);
         }
 
         [ChildActionOnly]
         public ActionResult LatestPostsWidget()
         {
-            var postsListViewModel = _widgetsModelCreator.GetLatestPosts(LatestPostsListSize);
+            var postsListViewModel = _widgetsModelBuilder.GetLatestPosts(LatestPostsListSize);
 
             return PartialView("_LatestPostsWidget", postsListViewModel);
         }

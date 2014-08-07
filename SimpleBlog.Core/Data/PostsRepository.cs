@@ -1,14 +1,19 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using SimpleBlog.Core.Entities;
 
 namespace SimpleBlog.Core.Data
 {
-    public class PostsRepository : Repository<Post>, IPostsRepository
+    public class PostsRepository : IPostsRepository
     {
+        protected readonly DbContext DbContext;
+        protected readonly DbSet<Post> DbSet;
+
         public PostsRepository(IDbContextFactory dbContextFactory)
-            : base(dbContextFactory)
         {
+            DbContext = dbContextFactory.GetContext();
+            DbSet = DbContext.Set<Post>();
         }
 
         public Post GetPost(int year, int month, int day, string slug)
@@ -87,7 +92,7 @@ namespace SimpleBlog.Core.Data
                                             || p.Tags.Any(t => t.Name.Equals(searchString))));
         }
 
-        public IList<Post> GetLatestPost(int count)
+        public IList<Post> GetLatestPosts(int count)
         {
             var posts = DbSet
                 .Where(p => p.Published)

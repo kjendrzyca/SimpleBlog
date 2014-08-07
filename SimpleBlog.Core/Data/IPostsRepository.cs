@@ -13,7 +13,7 @@ namespace SimpleBlog.Core.Data
         int TotalPostsForCategory(string categorySlug);
         int TotalPostsForTag(string tagSlug);
         IList<Post> GetPostsForSearch(string searchString, int pageNumber, int pageSize);
-        IList<Post> GetLatestPost(int count);
+        IList<Post> GetLatestPosts(int count);
         int TotalPostsForSearchString(string searchString);
     }
 }

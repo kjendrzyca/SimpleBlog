@@ -40,7 +40,7 @@ namespace SimpleBlog.Services
         {
             var model = new PostsListViewModel
                             {
-                                Posts = _postsRepository.GetLatestPost(count)
+                                Posts = _postsRepository.GetLatestPosts(count)
                             };
 
             return model;

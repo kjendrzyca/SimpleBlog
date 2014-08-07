@@ -7,14 +7,15 @@
         {
             foreach (var post in Model.Posts)
             {
-                <li>@Html.ActionLink(post.Title, "Post", "Blog", new
+                @*<li>@Html.ActionLink(post.Title, "Post", "Blog", new
                                                                      {
                                                                          year = post.PostedOn.Year,
                                                                          month = post.PostedOn.Month,
                                                                          day = post.PostedOn.Day,
                                                                          title = post.UrlSlug
                                                                      }, null)
-                </li>
+                </li>*@
+                <li>@Html.PostLink(post)</li>
             }
         }
         else

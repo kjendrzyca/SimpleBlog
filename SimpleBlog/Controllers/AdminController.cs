@@ -8,7 +8,7 @@ using SimpleBlog.Services;
 
 namespace SimpleBlog.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class AdminController : Controller
     {
         private readonly IAuthProvider _authProvider;
